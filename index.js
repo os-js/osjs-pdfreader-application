@@ -153,9 +153,7 @@ OSjs.make('osjs/packages').register('PDFReader', (core, args, options, metadata)
     id: 'PDFReaderWindow',
     title: metadata.title.en_EN,
     icon: proc.resource(metadata.icon),
-    state: {
-      dimension: {width: 400, height: 400}
-    }
+    dimension: {width: 400, height: 400}
   })
     .on('destroy', () => proc.destroy())
     .on('render', (win) => win.focus())
