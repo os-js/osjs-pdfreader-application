@@ -1,0 +1,17 @@
+{
+  "name": "PDFReader",
+  "category": "office",
+  "title": {
+    "en_EN": "PDF Reader"
+  },
+  "description": {
+    "en_EN": "PDF Reader"
+  },
+  "mimes": [
+    "application\/pdf"
+  ],
+  "files": [
+    "index.js",
+    "index.css"
+  ]
+}
