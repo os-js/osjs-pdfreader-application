@@ -1,6 +1,7 @@
 {
   "name": "PDFReader",
   "category": "office",
+  "icon": "logo.svg",
   "title": {
     "en_EN": "PDF Reader"
   },

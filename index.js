@@ -152,6 +152,7 @@ OSjs.make('osjs/packages').register('PDFReader', (core, args, options, metadata)
   proc.createWindow({
     id: 'PDFReaderWindow',
     title: metadata.title.en_EN,
+    icon: proc.resource(metadata.icon),
     state: {
       dimension: {width: 400, height: 400}
     }
