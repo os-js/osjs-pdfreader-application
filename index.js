@@ -95,13 +95,27 @@ const createApp = (core, proc, win, $content) => {
       return;
     }
 
-    const url = await core.make('osjs/vfs').url(file.path);
-    a.setFile({file: url});
-    win.setTitle(`${proc.metadata.title.en_EN} - ${file.filename}`);
-    proc.args.file = file;
-    current = await PDFJS.getDocument(url);
+    win.setState('loading', true);
 
-    bus.emit('opened');
+    try {
+      const url = await core.make('osjs/vfs').url(file.path);
+      current = await PDFJS.getDocument(url);
+
+      a.setFile({file: url});
+      win.setTitle(`${proc.metadata.title.en_EN} - ${file.filename}`);
+      proc.args.file = file;
+
+      bus.emit('opened');
+    } catch (e) {
+      core.make('osjs/dialog', 'alert', {
+        parent: win,
+        type: 'error',
+        message: e
+      });
+      console.error(e);
+    } finally {
+      win.setState('loading', false);
+    }
   };
 
   const openPage = async (index, zoom = 1) => {
@@ -112,17 +126,25 @@ const createApp = (core, proc, win, $content) => {
     const {numPages} = current;
     index = Math.max(1, Math.min(index, numPages));
 
-    const page = await current.getPage(index);
-    const canvas = win.$content.querySelector('canvas');
-    const viewport = page.getViewport(zoom);
-    const context = canvas.getContext('2d');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
+    win.setState('loading', true);
 
-    page.render({
-      canvasContext: context,
-      viewport
-    });
+    try {
+      const page = await current.getPage(index);
+      const canvas = win.$content.querySelector('canvas');
+      const viewport = page.getViewport(zoom);
+      const context = canvas.getContext('2d');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+
+      page.render({
+        canvasContext: context,
+        viewport
+      });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      win.setState('loading', false);
+    }
 
     bus.emit('render', index, numPages, zoom);
   };
