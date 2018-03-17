@@ -38,7 +38,8 @@ import {
   BoxContainer,
   Button,
   Input,
-  Toolbar
+  Toolbar,
+  Menubar
 } from '@osjs/gui';
 
 import PDFJS from 'pdfjs-dist';
@@ -52,6 +53,12 @@ const zoomLabel = (state) => `${parseInt(state.zoom * 100, 10)}%`;
 
 const view = (bus) => (state, actions) =>
   h(Box, {}, [
+    h(Menubar, {
+      items: [
+        {label: 'File'}
+      ],
+      onclick: (item, index, ev) => bus.emit('menu', {item, index, ev})
+    }),
     h(BoxContainer, {shrink: 1}, [
       h(Toolbar, {}, [
         h(Button, {label: 'Zoom Out', onclick: () => bus.emit('set-state', state.current, state.zoom - ZOOM_STEP)}),
@@ -160,6 +167,21 @@ const createApp = (core, proc, win, $content) => {
   bus.on('opened', () => openPage(1));
   bus.on('render', (current, total, zoom) => a.setState({current, total, zoom}));
   bus.on('set-state', (idx, zoom) => openPage(idx, zoom));
+  bus.on('menu', ({item, index, ev}) => {
+    core.make('osjs/contextmenu').show({
+      menu: [
+        {label: 'Open', onclick: () => {
+          core.make('osjs/dialog', 'file', {type: 'open', mime: proc.metadata.mimes}, (btn, item) => {
+            if (btn === 'ok') {
+              openDocument(item);
+            }
+          });
+        }},
+        {label: 'Quit', onclick: () => proc.destroy()}
+      ],
+      position: ev.target
+    });
+  });
 };
 
 OSjs.make('osjs/packages').register('PDFReader', (core, args, options, metadata) => {
