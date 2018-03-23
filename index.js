@@ -74,11 +74,7 @@ const view = (bus) => (state, actions) =>
         key: state.file,
         class: 'osjs-gui-border osjs-gui-absolute-fill osjs-pdfreader-container'
       }, [
-        h('canvas', {
-          oncreate: () => console.error('create'),
-          onupdate: () => console.error('update'),
-          ondestroy: () => console.error('destroy'),
-        })
+        h('canvas', {})
       ])
     ])
   ]);
