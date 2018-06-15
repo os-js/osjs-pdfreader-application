@@ -38,8 +38,7 @@ module.exports = (options, {createWebpack}) => createWebpack(__dirname, {
   ],
   entry: {
     index: [
-      path.resolve(__dirname, 'index.js'),
-      path.resolve(__dirname, 'index.scss')
+      path.resolve(__dirname, 'index.js')
     ],
     'pdf.worker': [
       path.resolve(__dirname, 'node_modules/pdfjs-dist/build/pdf.worker.entry')
