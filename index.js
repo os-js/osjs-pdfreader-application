@@ -35,9 +35,8 @@ import {
 
 import {
   Box,
-  BoxContainer,
   Button,
-  Input,
+  TextField,
   Toolbar,
   Menubar
 } from '@osjs/gui';
@@ -59,23 +58,30 @@ const view = (bus) => (state, actions) =>
       ],
       onclick: (item, index, ev) => bus.emit('menu', {item, index, ev})
     }),
-    h(BoxContainer, {shrink: 1}, [
-      h(Toolbar, {}, [
-        h(Button, {label: 'Zoom Out', onclick: () => bus.emit('set-state', state.current, state.zoom - ZOOM_STEP)}),
-        h(Button, {label: 'Zoom In', onclick: () => bus.emit('set-state', state.current, state.zoom + ZOOM_STEP)}),
-        h(Input, {type: 'text', disabled: true, value: zoomLabel(state), style: {flexShrink: 1, flexGrow: 1}}),
-        h(Button, {label: 'Prev', onclick: () => bus.emit('set-state', state.current - 1, state.zoom)}),
-        h(Button, {label: 'Next', onclick: () => bus.emit('set-state', state.current + 1, state.zoom)}),
-        h(Input, {type: 'text', disabled: true, value: pageLabel(state), style: {flexShrink: 1, flexGrow: 1}}),
-      ])
+    h(Toolbar, {}, [
+      h(Button, {label: 'Zoom Out', onclick: () => bus.emit('set-state', state.current, state.zoom - ZOOM_STEP)}),
+      h(Button, {label: 'Zoom In', onclick: () => bus.emit('set-state', state.current, state.zoom + ZOOM_STEP)}),
+      h(TextField, {type: 'text', disabled: true, value: zoomLabel(state), box: {shrink: 1, grow: 1}}),
+      h(Button, {label: 'Prev', onclick: () => bus.emit('set-state', state.current - 1, state.zoom)}),
+      h(Button, {label: 'Next', onclick: () => bus.emit('set-state', state.current + 1, state.zoom)}),
+      h(TextField, {type: 'text', disabled: true, value: pageLabel(state), box: {shrink: 1, grow: 1}}),
     ]),
-    h(BoxContainer, {grow: 1}, [
+    h(Box, {
+      key: state.file,
+      grow: 1,
+      shrink: 1,
+      class: 'osjs-gui-border osjs-pdfreader-container'
+    }, [
       h('div', {
-        key: state.file,
-        class: 'osjs-gui-border osjs-gui-absolute-fill osjs-pdfreader-container'
-      }, [
-        h('canvas', {})
-      ])
+        style: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          overflow: 'auto'
+        }
+      }, h('canvas', {}))
     ])
   ]);
 
