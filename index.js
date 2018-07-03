@@ -38,7 +38,8 @@ import {
   Button,
   TextField,
   Toolbar,
-  Menubar
+  Menubar,
+  MenubarItem
 } from '@osjs/gui';
 
 import PDFJS from 'pdfjs-dist';
@@ -52,12 +53,11 @@ const zoomLabel = (state) => `${parseInt(state.zoom * 100, 10)}%`;
 
 const view = (bus) => (state, actions) =>
   h(Box, {}, [
-    h(Menubar, {
-      items: [
-        {label: 'File'}
-      ],
-      onclick: (item, index, ev) => bus.emit('menu', {item, index, ev})
-    }),
+    h(Menubar, {}, [
+      h(MenubarItem, {
+        onclick: ev => bus.emit('menu', ev)
+      }, 'File')
+    ]),
     h(Toolbar, {}, [
       h(Button, {label: 'Zoom Out', onclick: () => bus.emit('set-state', state.current, state.zoom - ZOOM_STEP)}),
       h(Button, {label: 'Zoom In', onclick: () => bus.emit('set-state', state.current, state.zoom + ZOOM_STEP)}),
@@ -169,7 +169,7 @@ const createApp = (core, proc, win, $content) => {
   bus.on('opened', () => openPage(1));
   bus.on('render', (current, total, zoom) => a.setState({current, total, zoom}));
   bus.on('set-state', (idx, zoom) => openPage(idx, zoom));
-  bus.on('menu', ({item, index, ev}) => {
+  bus.on('menu', (ev) => {
     core.make('osjs/contextmenu').show({
       menu: [
         {label: 'Open', onclick: () => {
