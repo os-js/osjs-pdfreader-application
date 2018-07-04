@@ -1,6 +1,6 @@
 {
   "name": "@osjs/pdfreader-package",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "OS.js v3 pdfreader Package",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,7 @@
     "osjs"
   ],
   "dependencies": {
-    "@osjs/gui": "^3.0.0-alpha.18",
+    "@osjs/gui": "^3.0.0-alpha.19",
     "hyperapp": "^1.2.0",
     "pdfjs-dist": "^2.0.428"
   },

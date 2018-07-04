@@ -35,6 +35,7 @@ import {
 
 import {
   Box,
+  BoxStyled,
   Button,
   TextField,
   Toolbar,
@@ -66,11 +67,11 @@ const view = (bus) => (state, actions) =>
       h(Button, {label: 'Next', onclick: () => bus.emit('set-state', state.current + 1, state.zoom)}),
       h(TextField, {type: 'text', disabled: true, value: pageLabel(state), box: {shrink: 1, grow: 1}}),
     ]),
-    h(Box, {
+    h(BoxStyled, {
       key: state.file,
       grow: 1,
       shrink: 1,
-      class: 'osjs-gui-border osjs-pdfreader-container'
+      class: 'osjs-pdfreader-container'
     }, [
       h('div', {
         style: {
