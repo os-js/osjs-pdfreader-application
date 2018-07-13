@@ -108,7 +108,7 @@ const createApp = (core, proc, win, $content) => {
     win.setState('loading', true);
 
     try {
-      const url = await core.make('osjs/vfs').url(file.path);
+      const url = await core.make('osjs/vfs').url(file);
       current = await PDFJS.getDocument(url);
 
       a.setFile({file: url});
