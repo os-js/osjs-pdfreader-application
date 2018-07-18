@@ -164,7 +164,7 @@ const createApp = (core, proc, win, $content) => {
     current = null;
     try {
       bus.destroy();
-    }  catch (e) {}
+    }  catch (e) { /* noop */ }
   });
 
   bus.on('opened', () => openPage(1));
