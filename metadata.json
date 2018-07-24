@@ -12,6 +12,6 @@
     "application\/pdf"
   ],
   "files": [
-    "index.js"
+    "main.js"
   ]
 }
