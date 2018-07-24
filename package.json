@@ -1,7 +1,7 @@
 {
   "name": "@osjs/pdfreader-application",
   "version": "1.1.0",
-  "description": "OS.js v3 pdfreader Package",
+  "description": "OS.js v3 PDF Reader Application",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "eslint *.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/os-js/osjs-pdfreader-package.git"
+    "url": "git+https://github.com/os-js/osjs-pdfreader-application.git"
   },
   "keywords": [
     "osjs"
@@ -24,9 +24,9 @@
   "author": "Anders Evenrud <andersevenrud@gmail.com>",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/os-js/osjs-pdfreader-package/issues"
+    "url": "https://github.com/os-js/osjs-pdfreader-application/issues"
   },
-  "homepage": "https://github.com/os-js/osjs-pdfreader-package#readme",
+  "homepage": "https://github.com/os-js/osjs-pdfreader-application#readme",
   "osjs": {
     "type": "package"
   },
