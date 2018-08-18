@@ -13,6 +13,8 @@
 
 This is the PDF Reader Application for OS.js v3
 
+![Screenshot](https://raw.githubusercontent.com/os-js/osjs-pdfreader-application/master/screenshot.png)
+
 ## Installation
 
 ```bash
