@@ -3,10 +3,12 @@
   "category": "office",
   "icon": "logo.svg",
   "title": {
-    "en_EN": "PDF Reader"
+    "en_EN": "PDF Reader",
+    "fr_FR": "Lecteur de fichiers PDF"
   },
   "description": {
-    "en_EN": "PDF Reader"
+    "en_EN": "PDF Reader",
+    "fr_FR": "Lecteur de fichiers PDF"
   },
   "mimes": [
     "application\/pdf"
