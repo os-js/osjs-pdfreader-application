@@ -167,6 +167,16 @@ const createApp = (core, proc, win, $content) => {
     }  catch (e) { /* noop */ }
   });
 
+
+  win.on('drop', (ev, data) => {
+    if (data.isFile && data.mime) {
+      const found = proc.metadata.mimes.find(m => (new RegExp(m)).test(data.mime));
+      if (found) {
+        openDocument(data);
+      }
+    }
+  });
+
   bus.on('opened', () => openPage(1));
   bus.on('render', (current, total, zoom) => a.setState({current, total, zoom}));
   bus.on('set-state', (idx, zoom) => openPage(idx, zoom));
