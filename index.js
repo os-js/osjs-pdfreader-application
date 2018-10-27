@@ -41,7 +41,7 @@ import {
   Toolbar,
   Menubar,
   MenubarItem
-} from '@osjs/gui/index.js';
+} from '@osjs/gui';
 
 import PDFJS from 'pdfjs-dist';
 
