@@ -52,19 +52,19 @@ const pageLabel = (state) =>
 
 const zoomLabel = (state) => `${parseInt(state.zoom * 100, 10)}%`;
 
-const view = (bus) => (state, actions) =>
+const view = (bus, icon, _) => (state, actions) =>
   h(Box, {}, [
     h(Menubar, {}, [
       h(MenubarItem, {
         onclick: ev => bus.emit('menu', ev)
-      }, 'File')
+      }, _('LBL_FILE'))
     ]),
     h(Toolbar, {}, [
-      h(Button, {label: 'Zoom Out', onclick: () => bus.emit('set-state', state.current, state.zoom - ZOOM_STEP)}),
-      h(Button, {label: 'Zoom In', onclick: () => bus.emit('set-state', state.current, state.zoom + ZOOM_STEP)}),
+      h(Button, {icon: icon('zoom-out'), title: 'Zoom Out', onclick: () => bus.emit('set-state', state.current, state.zoom - ZOOM_STEP)}),
+      h(Button, {icon: icon('zoom-in'), title: 'Zoom In', onclick: () => bus.emit('set-state', state.current, state.zoom + ZOOM_STEP)}),
       h(TextField, {type: 'text', disabled: true, value: zoomLabel(state), box: {shrink: 1, grow: 1}}),
-      h(Button, {label: 'Prev', onclick: () => bus.emit('set-state', state.current - 1, state.zoom)}),
-      h(Button, {label: 'Next', onclick: () => bus.emit('set-state', state.current + 1, state.zoom)}),
+      h(Button, {icon: icon('go-previous'), title: 'Prev', onclick: () => bus.emit('set-state', state.current - 1, state.zoom)}),
+      h(Button, {icon: icon('go-next'), title: 'Next', onclick: () => bus.emit('set-state', state.current + 1, state.zoom)}),
       h(TextField, {type: 'text', disabled: true, value: pageLabel(state), box: {shrink: 1, grow: 1}}),
     ]),
     h(BoxStyled, {
@@ -88,7 +88,9 @@ const view = (bus) => (state, actions) =>
 
 const createApp = (core, proc, win, $content) => {
   let current;
+  const _ = core.make('osjs/locale').translate;
   const bus = core.make('osjs/event-handler');
+  const {icon} = core.make('osjs/theme');
 
   const a = app({
     file: null,
@@ -98,7 +100,7 @@ const createApp = (core, proc, win, $content) => {
   }, {
     setFile: ({file}) => state => ({file}),
     setState: newState => state => newState
-  }, view(bus), $content);
+  }, view(bus, icon, _), $content);
 
   const openDocument = async (file) => {
     if (!file) {
@@ -183,14 +185,14 @@ const createApp = (core, proc, win, $content) => {
   bus.on('menu', (ev) => {
     core.make('osjs/contextmenu').show({
       menu: [
-        {label: 'Open', onclick: () => {
+        {label: _('LBL_OPEN'), onclick: () => {
           core.make('osjs/dialog', 'file', {type: 'open', mime: proc.metadata.mimes}, (btn, item) => {
             if (btn === 'ok') {
               openDocument(item);
             }
           });
         }},
-        {label: 'Quit', onclick: () => proc.destroy()}
+        {label: _('LBL_QUIT'), onclick: () => proc.destroy()}
       ],
       position: ev.target
     });
@@ -198,6 +200,9 @@ const createApp = (core, proc, win, $content) => {
 };
 
 OSjs.make('osjs/packages').register('PDFReader', (core, args, options, metadata) => {
+  const title = core.make('osjs/locale')
+    .translatableFlat(metadata.title);
+
   const proc = core.make('osjs/application', {
     args,
     options,
@@ -208,7 +213,7 @@ OSjs.make('osjs/packages').register('PDFReader', (core, args, options, metadata)
 
   proc.createWindow({
     id: 'PDFReaderWindow',
-    title: metadata.title.en_EN,
+    title,
     icon: proc.resource(metadata.icon),
     dimension: {width: 400, height: 400}
   })
