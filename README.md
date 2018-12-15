@@ -18,6 +18,6 @@ This is the PDF Reader Application for OS.js v3
 ## Installation
 
 ```bash
-npm install --save @osjs/pdfreader-application
+npm install --save --production @osjs/pdfreader-application
 npm run package:discover
 ```
