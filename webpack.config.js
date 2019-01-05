@@ -14,6 +14,9 @@ module.exports = {
       path.resolve(__dirname, 'node_modules/pdfjs-dist/build/pdf.worker.entry')
     ]
   },
+  externals: {
+    osjs: 'OSjs'
+  },
   optimization: {
     minimize,
   },

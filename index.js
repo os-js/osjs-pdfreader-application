@@ -28,6 +28,9 @@
  * @licence Simplified BSD License
  */
 
+import osjs from 'osjs';
+import {name as applicationName} from './metadata.json';
+
 import {
   h,
   app
@@ -199,7 +202,7 @@ const createApp = (core, proc, win, $content) => {
   });
 };
 
-OSjs.make('osjs/packages').register('PDFReader', (core, args, options, metadata) => {
+osjs.register(applicationName, (core, args, options, metadata) => {
   const title = core.make('osjs/locale')
     .translatableFlat(metadata.title);
 
