@@ -20,7 +20,6 @@
     "dist/",
     "metadata.json"
   ],
-  "dependencies": {},
   "author": "Anders Evenrud <andersevenrud@gmail.com>",
   "license": "BSD-2-Clause",
   "bugs": {
@@ -30,20 +29,13 @@
   "osjs": {
     "type": "package"
   },
-  "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/plugin-transform-runtime": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/runtime": "^7.6.0",
-    "@osjs/eslint-config": "^1.0.1",
+  "dependencies": {
     "@osjs/gui": "^4.0.25",
-    "babel-loader": "^8.0.6",
-    "copy-webpack-plugin": "^5.0.4",
-    "eslint": "^6.3.0",
     "hyperapp": "^1.2.10",
-    "pdfjs-dist": "^2.1.266",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.8"
+    "pdfjs-dist": "^2.1.266"
+  },
+  "devDependencies": {
+    "@osjs/dev-meta": "^1.0.2"
   },
   "eslintConfig": {
     "env": {
@@ -57,8 +49,10 @@
   },
   "babel": {
     "presets": [
-      ["@babel/preset-env", {
-      }]
+      [
+        "@babel/preset-env",
+        {}
+      ]
     ],
     "plugins": [
       "@babel/plugin-transform-runtime"
