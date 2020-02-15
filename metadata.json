@@ -5,12 +5,14 @@
   "title": {
     "en_EN": "PDF Reader",
     "nb_NO": "PDF Leser",
-    "fr_FR": "Lecteur de fichiers PDF"
+    "fr_FR": "Lecteur de fichiers PDF",
+    "pt_BR": "Leitor de PDF"
   },
   "description": {
     "en_EN": "Read PDF files",
     "nb_NO": "Les PDF filer",
-    "fr_FR": "Lecteur de fichiers PDF"
+    "fr_FR": "Lecteur de fichiers PDF",
+    "pt_BR": "Leia arquivos no formato PDF"
   },
   "mimes": [
     "application\/pdf"
