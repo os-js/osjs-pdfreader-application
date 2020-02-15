@@ -44,5 +44,24 @@
     "pdfjs-dist": "^2.1.266",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "extends": "@osjs/eslint-config"
+  },
+  "babel": {
+    "presets": [
+      ["@babel/preset-env", {
+      }]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
   }
 }
