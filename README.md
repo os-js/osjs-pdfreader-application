@@ -8,18 +8,17 @@
 [![Support](https://img.shields.io/badge/opencollective-donate-red.svg)](https://opencollective.com/osjs)
 [![Donate](https://img.shields.io/badge/liberapay-donate-yellowgreen.svg)](https://liberapay.com/os-js/)
 [![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://paypal.me/andersevenrud)
-[![Community](https://img.shields.io/badge/join-community-green.svg)](https://community.os-js.org/)
 
-# OS.js v3 PDF Reader Application
+# OS.js PDF Reader Application
 
-This is the PDF Reader Application for OS.js v3
+This is the PDF Reader Application for OS.js.
 
 ![Screenshot](https://raw.githubusercontent.com/os-js/osjs-pdfreader-application/master/screenshot.png)
 
 ## Installation
 
 ```bash
-npm install --save --production @osjs/pdfreader-application
+npm install @osjs/pdfreader-application
 npm run package:discover
 ```
 
