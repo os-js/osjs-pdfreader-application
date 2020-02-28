@@ -1,7 +1,7 @@
 {
   "name": "@osjs/pdfreader-application",
-  "version": "1.1.15",
-  "description": "OS.js v3 PDF Reader Application",
+  "version": "1.1.16",
+  "description": "OS.js PDF Reader Application",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "eslint *.js",
