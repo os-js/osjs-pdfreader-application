@@ -84,7 +84,8 @@ const view = (bus, icon, _) => (state, actions) =>
           width: '100%',
           height: '100%',
           overflow: 'auto',
-          textAlign: 'center'
+          textAlign: 'center',
+          direction: 'ltr'
         }
       }, h('canvas', {}))
     ])
