@@ -128,7 +128,7 @@ const createApp = (core, proc, win, $content) => {
         parent: win,
         type: 'error',
         message: e
-      });
+      }, () => {});
       console.error(e);
     } finally {
       win.setState('loading', false);
