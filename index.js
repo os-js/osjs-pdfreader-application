@@ -116,7 +116,7 @@ const createApp = (core, proc, win, $content) => {
 
     try {
       const url = await core.make('osjs/vfs').url(file);
-      current = await PDFJS.getDocument(url);
+      current = await PDFJS.getDocument(url).promise;
 
       a.setFile({file: url});
       win.setTitle(`${proc.metadata.title.en_EN} - ${file.filename}`);
@@ -148,7 +148,7 @@ const createApp = (core, proc, win, $content) => {
     try {
       const page = await current.getPage(index);
       const canvas = win.$content.querySelector('canvas');
-      const viewport = page.getViewport(zoom);
+      const viewport = page.getViewport({scale: zoom});
       const context = canvas.getContext('2d');
       canvas.width = viewport.width;
       canvas.height = viewport.height;
