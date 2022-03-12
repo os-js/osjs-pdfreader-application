@@ -21,9 +21,11 @@ module.exports = {
     minimize,
   },
   plugins: [
-    new CopyWebpackPlugin([
-      'logo.svg'
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        'logo.svg'
+      ]
+    }),
   ],
   module: {
     rules: [
