@@ -67,6 +67,7 @@ const view = (bus, icon, _) => (state, actions) =>
       h(Button, {icon: icon('zoom-in'), title: 'Zoom In', onclick: () => bus.emit('set-state', state.current, state.zoom + ZOOM_STEP)}),
       h(TextField, {type: 'text', disabled: true, value: zoomLabel(state), box: {shrink: 1, grow: 1}}),
       h(Button, {icon: icon('go-previous'), title: 'Prev', onclick: () => bus.emit('set-state', state.current - 1, state.zoom)}),
+      h(TextField, {type: 'number', disabled: false, onchange: (ev) => bus.emit('set-page', ev, state.zoon), value: state.current, box: {shrink: 1, grow: 1}}),
       h(Button, {icon: icon('go-next'), title: 'Next', onclick: () => bus.emit('set-state', state.current + 1, state.zoom)}),
       h(TextField, {type: 'text', disabled: true, value: pageLabel(state), box: {shrink: 1, grow: 1}}),
     ]),
@@ -201,6 +202,13 @@ const createApp = (core, proc, win, $content) => {
       ],
       position: ev.target
     });
+  });
+
+  bus.on('set-page', (ev, zoom) => {
+    if (ev.target.value) {
+      const page = parseInt(ev.target.value, 10);
+      openPage(page, zoom);
+    }
   });
 };
 
